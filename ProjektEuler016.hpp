@@ -55,6 +55,7 @@ namespace PE016
 		}
 		BasicInteger& operator*= (BasicInteger const& Rhs)
 		{
+			
 			if (this->Data.any() && Rhs.Data.any())
 			{
 				BasicInteger Result(0);
@@ -72,7 +73,6 @@ namespace PE016
 			{
 				return *this = 0;
 			}
-
 		}
 
 		BasicInteger& operator/= (BasicInteger Rhs)
