@@ -7,6 +7,7 @@
 #include <bitset>
 #include <algorithm>
 #include <stdexcept>
+#include "Stopwatch.hpp"
 namespace PE016
 {
 	template<std::size_t N>
@@ -54,20 +55,26 @@ namespace PE016
 		}
 		BasicInteger& operator*= (BasicInteger const& Rhs)
 		{
-			BasicInteger Result(0);
-			for(unsigned i = 0; i < this->Data.size(); ++i)
+			if (this->Data.any() && Rhs.Data.any())
 			{
-				BasicInteger temp(0);
-				for(unsigned j = 0; j < Rhs.Data.size(); ++j)
+				BasicInteger Result(0);
+				for (std::size_t i = 0; i < Rhs.Data.size(); i++)
 				{
-					temp.Data[j] = this->Data[i] & Rhs.Data[j];
+					if (Rhs.Data[i])
+					{
+						Result += *this;
+					}
+					this->Data <<= 1;
 				}
-				temp.Data <<= i;
-				Result += temp;
+				return *this = Result;
 			}
-			*this = Result;
-			return *this;
+			else
+			{
+				return *this = 0;
+			}
+
 		}
+
 		BasicInteger& operator/= (BasicInteger Rhs)
 		{
 			if(Rhs == 0)
@@ -197,112 +204,58 @@ namespace PE016
 	}
 
 	typedef BasicInteger<8> Int8;
-
+	typedef BasicInteger<1024> Int1024;
 	void _main()
 	{
-		auto Div = [&](Int8 const& Lhs, Int8 const& Rhs)
-		{
-			std::cout << Lhs.to_ulong() << '/' << Rhs.to_ulong() << " = " << (Lhs / Rhs).to_ulong() << '\n';
-		};
-		Div(0, 1);
-		Div(8, 2);
-		Div(2, 8);
-		Div(29, 5);
-		Div(29, 29);
+		/*const Int1024 a(15);
+		const Int1024 b(16);
+		Int1024 c(0);
 
-		auto Less = [&](Int8 const& Lhs, Int8 const& Rhs)
-		{
-			std::cout << Lhs.to_ulong() << '<' << Rhs.to_ulong() << " ? " << (Lhs < Rhs ? "yea" : "nah") << '\n';
-		};
-		Less(0, 0);
-		Less(0, 1);
-		Less(3, 4);
-		Less(4, 4);
-		Less(5, 4);
-
-		/*
-		const myBit a(15);
-		const myBit b(16);
-		myBit c(240);
-		*/
-
-		/*
-		std::cout <<"s = a+b\n";
-		std::cout << "a: " << a.to_ulong() << "\t Bin: " << a << '\n';
-		std::cout << "b: " << b.to_ulong() << "\t Bin: " << b << '\n';
-		c = a+b;
-		std::cout << "S: " << c.to_ulong() << "\t Bin: " << c << "\n\n";
-
-		std::cout <<"s = c-a\n";
-		std::cout << "c: " << c.to_ulong() << "\t Bin: " << c << '\n';
-		std::cout << "a: " << a.to_ulong() << "\t Bin: " << a << '\n';
-		c = c-a;
-		std::cout << "S: " << c.to_ulong() << "\t Bin: " << c << "\n\n";
-
-		std::cout <<"s = a*b\n";
+		std::cout << "s = a*b\n";
 		std::cout << "a: " << a.to_ulong() << "\t Bin: " << a << '\n';
 		std::cout << "b: " << b.to_ulong() << "\t Bin: " << b << '\n';
 		c = a*b;
-		std::cout << "S: " << c.to_ulong() << "\t Bin: " << c << "\n\n";
+		std::cout << "S: " << c.to_ulong() << "\t Bin: " << c << "\n\n";*/
 
-		std::cout << "a < b\n";
-		std::cout <<  a.to_ulong() << " < " <<  b.to_ulong() << " : ";
-		bool asdf = a<b;
-		std::cout << asdf << "\n";
-		std::cout << "a > b\n";
-		std::cout <<  a.to_ulong() << " > " <<  b.to_ulong() << " : ";
-		asdf = a>b;
-		std::cout << asdf << "\n";
-		*/
-
-		/*
-		std::cout <<"s=s/b\n";
-		std::cout << "s: " << c.to_ulong() << "\t Bin: " << c << '\n';
-		std::cout << "b: " << b.to_ulong() << "\t Bin: " << b << '\n';
-		c/=b;
-		std::cout << "S: " << c.to_ulong() << "\t Bin: " << c << "\n\n";
-		*/
-
-		/*
 		unsigned sum = 0;
-		unsigned counter = 0;
-		myBit _x(2);
-		myBit RTemp(1);
+		Int1024 _x(1);
+		Int1024 RTemp(1);
 
-		for(unsigned i = 0; i <1000; ++i)
+		Fractaller::Stopwatch sw;
+
+		sw.Start();
+		for(unsigned i = 0; i < 1000; ++i)
 		{
-			_x*=myBit(2);
+			_x*= Int1024(2);
 		}
-
+		sw.Stop();
+		std::cout << "2^1000 " << sw.ElapsedTimeMicrosecondsFlt() << "ms\n";
+		
+		sw.Start();
 		while(_x > RTemp)
 		{
-			RTemp *= myBit(10);
-			++counter;
+			RTemp *= 10;
 		}
-		--counter;
-		RTemp = myBit(0);
+		sw.Stop();
+		std::cout << "Rtemp erste Anpassung " << sw.ElapsedTimeMicrosecondsFlt() << "ms\n";
 
-		for(unsigned i = 0; i <counter; ++i)
-		{
-			RTemp *= myBit(10);
-		}
+		sw.Start();
+		RTemp /= 10;
+		sw.Stop();
+		std::cout << "RTemp/10 " << sw.ElapsedTimeMicrosecondsFlt() << "ms\n";
 
-		while(_x > 0)
+		sw.Start();
+		while(_x > Int1024(0))
 		{
-			while(_x > RTemp)
+			while(_x >= RTemp)
 			{
 				_x -= RTemp;
 				++sum;
 			}
-			--counter;
-			RTemp = myBit(0);
-
-			for(unsigned i = 0; i <counter; ++i)
-			{
-				RTemp *= myBit(10);
-			}
+			RTemp /= 10;
 		}
-		std::cout << sum ;
-		*/
+		sw.Stop();
+		std::cout << "quersumme bilden " << sw.ElapsedTimeMicrosecondsFlt() << "ms\n";
+		std::cout << "Quersumme: " << sum << '\n';	
 	}
 }
