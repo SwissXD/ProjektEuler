@@ -1,8 +1,8 @@
 //--------------------------
-// ProjektEuler 16
+// ProjektEuler 17
 // Tkel
-// Date_start 17.08.2016
-// Date_End 20.08.2016
+// Date_start 21.08.2016
+// Date_End 21.08.2016
 //--------------------------
 #include <string>
 #include <iostream>

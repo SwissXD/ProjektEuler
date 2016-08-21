@@ -23,7 +23,8 @@
 //#include "ProjektEuler014.hpp"	completed!
 //#include "ProjektEuler015.hpp"	completed!
 //#include "ProjektEuler016.hpp"	completed!
-#include "ProjektEuler017.hpp"
+//#include "ProjektEuler017.hpp"	completed!
+#include "ProjektEuler018.hpp"
 //#include "TicTacToe.hpp"
 
 //complete:
