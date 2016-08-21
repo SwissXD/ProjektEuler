@@ -1,13 +1,14 @@
 //--------------------------
-// ProjektEuler 15
+// ProjektEuler 16
 // Tkel
-// Data 17.08.2016
+// Date_start 17.08.2016
+// Date_End 20.08.2016
 //--------------------------
 #include <iostream>
 #include <bitset>
 #include <algorithm>
 #include <stdexcept>
-#include "Stopwatch.hpp"
+
 namespace PE016
 {
 	template<std::size_t N>

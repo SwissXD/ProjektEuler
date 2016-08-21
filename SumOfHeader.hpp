@@ -3,22 +3,27 @@
 // Tkel
 // Data xx.xx.xx
 //--------------------------
-//#include "ProjektEuler001.hpp"
-//#include "ProjektEuler002.hpp"
-//#include "ProjektEuler003.hpp"
-//#include "ProjektEuler004.hpp"
-//#include "ProjektEuler005.hpp"
-//#include "ProjektEuler006.hpp"
-//#include "ProjektEuler007.hpp"
-//#include "ProjektEuler008.hpp"
-//#include "ProjektEuler009.hpp"
-//#include "ProjektEuler010.hpp"
-//#include "ProjektEuler011.hpp"
-//#include "ProjektEuler012.hpp"
+
+#include "Stopwatch.hpp"
+
+//--------------------------
+//#include "ProjektEuler001.hpp"	completed!
+//#include "ProjektEuler002.hpp"	completed!
+//#include "ProjektEuler003.hpp"	completed!
+//#include "ProjektEuler004.hpp"	completed!
+//#include "ProjektEuler005.hpp"	completed!
+//#include "ProjektEuler006.hpp"	completed!
+//#include "ProjektEuler007.hpp"	completed!
+//#include "ProjektEuler008.hpp"	completed!
+//#include "ProjektEuler009.hpp"	completed!
+//#include "ProjektEuler010.hpp"	completed!
+//#include "ProjektEuler011.hpp"	completed!
+//#include "ProjektEuler012.hpp"	completed!
 //#include "ProjektEuler013.hpp" not completed!
-//#include "ProjektEuler014.hpp"
-//#include "ProjektEuler015.hpp"
-#include "ProjektEuler016.hpp"
+//#include "ProjektEuler014.hpp"	completed!
+//#include "ProjektEuler015.hpp"	completed!
+//#include "ProjektEuler016.hpp"	completed!
+#include "ProjektEuler017.hpp"
 //#include "TicTacToe.hpp"
 
 //complete:
