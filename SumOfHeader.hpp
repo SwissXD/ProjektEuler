@@ -4,7 +4,7 @@
 // Data xx.xx.xx
 //--------------------------
 
-#include "Stopwatch.hpp"
+//#include "Stopwatch.hpp"
 
 //--------------------------
 //#include "ProjektEuler001.hpp"	completed!
@@ -24,7 +24,8 @@
 //#include "ProjektEuler015.hpp"	completed!
 //#include "ProjektEuler016.hpp"	completed!
 //#include "ProjektEuler017.hpp"	completed!
-#include "ProjektEuler018.hpp"
+//#include "ProjektEuler018.hpp"
+#include "ProjektEuler020.hpp"
 //#include "TicTacToe.hpp"
 
 //complete:
