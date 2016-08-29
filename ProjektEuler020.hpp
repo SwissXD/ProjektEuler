@@ -56,7 +56,6 @@ namespace PE020
 		}
 		BasicInteger& operator*= (BasicInteger const& Rhs)
 		{
-
 			if (this->Data.any() && Rhs.Data.any())
 			{
 				BasicInteger Result(0);
@@ -206,6 +205,7 @@ namespace PE020
 
 	typedef BasicInteger<8> Int8;
 	typedef BasicInteger<1024> Int1024;
+
 	void _main()
 	{
 
